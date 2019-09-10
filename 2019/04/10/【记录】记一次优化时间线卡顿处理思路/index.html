@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="css,">
+  <meta name="keywords" content="记录,">
 
 
 
@@ -79,23 +79,21 @@
 
 
 
-<meta name="description" content="CSS3 新增了一个很有意思的属性 mix-blend-mode ，其中 mix 和 blend 的中文意译均为混合，那么这个属性的作用直译过来就是混合混合模式，当然，我们我们通常称之为混合模式。 混合模式最常见于 photoshop 中，是 PS 中十分强大的功能之一。当然，瞎用乱用混合模式谁都会，利用混合模式将多个图层混合得到一个新的效果，只是要用到恰到好处，或者说在 CSS 中利用混合">
-<meta name="keywords" content="css">
+<meta name="description" content="公司有这样的应用场景， 需要按时间段来分类图片， 然后各个分类之间还有联系， 因为有可能上一个分段的后面一部分图片和下一个分段的钱一部分图片在同一个分页。   打开某一分类： 在这种场景下， 我们需要考虑:  如何把归类的图片同时保持相应的顺序成一组 当我打开并不是连续的分段时， 中间的分段如何空出来， 以便于后续插入， 同时插入后还要保证 1  打开一个分类时会加载大量图片， 此时加载资源会阻塞">
+<meta name="keywords" content="记录">
 <meta property="og:type" content="article">
-<meta property="og:title" content="利用CSS混合模式更改图片颜色">
-<meta property="og:url" content="http://blog.nixiaolei.com/2019/03/16/利用CSS混合模式更改图片颜色/index.html">
+<meta property="og:title" content="【记录】记一次优化时间线卡顿处理思路">
+<meta property="og:url" content="http://blog.nixiaolei.com/2019/04/10/【记录】记一次优化时间线卡顿处理思路/index.html">
 <meta property="og:site_name" content="倪晓磊的博客">
-<meta property="og:description" content="CSS3 新增了一个很有意思的属性 mix-blend-mode ，其中 mix 和 blend 的中文意译均为混合，那么这个属性的作用直译过来就是混合混合模式，当然，我们我们通常称之为混合模式。 混合模式最常见于 photoshop 中，是 PS 中十分强大的功能之一。当然，瞎用乱用混合模式谁都会，利用混合模式将多个图层混合得到一个新的效果，只是要用到恰到好处，或者说在 CSS 中利用混合">
+<meta property="og:description" content="公司有这样的应用场景， 需要按时间段来分类图片， 然后各个分类之间还有联系， 因为有可能上一个分段的后面一部分图片和下一个分段的钱一部分图片在同一个分页。   打开某一分类： 在这种场景下， 我们需要考虑:  如何把归类的图片同时保持相应的顺序成一组 当我打开并不是连续的分段时， 中间的分段如何空出来， 以便于后续插入， 同时插入后还要保证 1  打开一个分类时会加载大量图片， 此时加载资源会阻塞">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://img.nixiaolei.com/2019-03-16-18-43-09.png">
-<meta property="og:image" content="http://img.nixiaolei.com/2019-03-16-18-44-01.png">
-<meta property="og:image" content="http://img.nixiaolei.com/2019-03-16-18-45-53.png">
-<meta property="og:image" content="http://img.nixiaolei.com/2019-03-16-18-46-30.png">
-<meta property="og:updated_time" content="2019-09-09T16:57:46.056Z">
+<meta property="og:image" content="http://img.nixiaolei.com/2019-09-10-20-36-59.png">
+<meta property="og:image" content="http://img.nixiaolei.com/2019-09-10-20-52-42.png">
+<meta property="og:updated_time" content="2019-09-10T14:03:58.676Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="利用CSS混合模式更改图片颜色">
-<meta name="twitter:description" content="CSS3 新增了一个很有意思的属性 mix-blend-mode ，其中 mix 和 blend 的中文意译均为混合，那么这个属性的作用直译过来就是混合混合模式，当然，我们我们通常称之为混合模式。 混合模式最常见于 photoshop 中，是 PS 中十分强大的功能之一。当然，瞎用乱用混合模式谁都会，利用混合模式将多个图层混合得到一个新的效果，只是要用到恰到好处，或者说在 CSS 中利用混合">
-<meta name="twitter:image" content="http://img.nixiaolei.com/2019-03-16-18-43-09.png">
+<meta name="twitter:title" content="【记录】记一次优化时间线卡顿处理思路">
+<meta name="twitter:description" content="公司有这样的应用场景， 需要按时间段来分类图片， 然后各个分类之间还有联系， 因为有可能上一个分段的后面一部分图片和下一个分段的钱一部分图片在同一个分页。   打开某一分类： 在这种场景下， 我们需要考虑:  如何把归类的图片同时保持相应的顺序成一组 当我打开并不是连续的分段时， 中间的分段如何空出来， 以便于后续插入， 同时插入后还要保证 1  打开一个分类时会加载大量图片， 此时加载资源会阻塞">
+<meta name="twitter:image" content="http://img.nixiaolei.com/2019-09-10-20-36-59.png">
 
 
 
@@ -125,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="http://blog.nixiaolei.com/2019/03/16/利用CSS混合模式更改图片颜色/">
+  <link rel="canonical" href="http://blog.nixiaolei.com/2019/04/10/【记录】记一次优化时间线卡顿处理思路/">
 
 
 
 
 
-  <title>利用CSS混合模式更改图片颜色 | 倪晓磊的博客</title>
+  <title>【记录】记一次优化时间线卡顿处理思路 | 倪晓磊的博客</title>
   
 
 
@@ -280,7 +278,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.nixiaolei.com/2019/03/16/利用CSS混合模式更改图片颜色/">
+    <link itemprop="mainEntityOfPage" href="http://blog.nixiaolei.com/2019/04/10/【记录】记一次优化时间线卡顿处理思路/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="a磊的前端梦">
@@ -297,7 +295,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">利用CSS混合模式更改图片颜色</h2>
+          <h2 class="post-title" itemprop="name headline">【记录】记一次优化时间线卡顿处理思路</h2>
         
 
         <div class="post-meta">
@@ -309,8 +307,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-16T18:34:26+08:00">
-                2019-03-16
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-10T20:28:07+08:00">
+                2019-04-10
               </time>
             
 
@@ -332,8 +330,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CSS/" itemprop="url" rel="index">
-                    <span itemprop="name">CSS</span>
+                  <a href="/categories/记录/" itemprop="url" rel="index">
+                    <span itemprop="name">记录</span>
                   </a>
                 </span>
 
@@ -363,7 +361,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  491 字
+                  465 字
                 </span>
               
 
@@ -400,28 +398,24 @@
       
 
       
-        <script type="text/javascript" src="/js/src/bai.js"></script>
-
-
-<p>CSS3 新增了一个很有意思的属性 <code>mix-blend-mode</code> ，其中 mix 和 blend 的中文意译均为混合，那么这个属性的作用直译过来就是混合混合模式，当然，我们我们通常称之为混合模式。</p>
-<p>混合模式最常见于 photoshop 中，是 PS 中十分强大的功能之一。当然，瞎用乱用混合模式谁都会，利用混合模式将多个图层混合得到一个新的效果，只是要用到恰到好处，或者说在 CSS 中利用混合模式制作出一些效果则需要对混合模式很深的理解及不断的尝试。</p>
-<p>开始动手吧 ~</p>
-<h2 id="尝试修改图片物体颜色"><a href="#尝试修改图片物体颜色" class="headerlink" title="尝试修改图片物体颜色"></a>尝试修改图片物体颜色</h2><p>首先我们创建一个Input框和一个 Img标签（其实这里我选择的图片不是很好）<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"color"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1553336864&amp;di=2f41edc8eedbf09fb1d106545acaed5f&amp;imgtype=jpg&amp;er=1&amp;src=http%3A%2F%2Fpic44.nipic.com%2F20140723%2F19276212_171901262000_2.jpg"</span> <span class="attr">alt</span>=<span class="string">""</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>然后我们将图片撑满屏幕， 将Input也撑满屏幕， 将input覆盖至图片之上， 然后为input 添加上混合模式<code>mix-blend-mode: hue;</code> </p>
-<blockquote>
-<p>因为input框自带颜色， 所以当用户切换颜色时也就能不依靠JS 即时生效</p>
-</blockquote>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="selector-tag">style</span>&gt;</span><br><span class="line"><span class="selector-tag">html</span>,<span class="selector-tag">body</span>, <span class="selector-tag">input</span>, <span class="selector-tag">img</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">input</span>&#123; </span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">mix-blend-mode</span>: hue;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="过程记录"><a href="#过程记录" class="headerlink" title="过程记录"></a>过程记录</h3><p>原图:<br><img src="http://img.nixiaolei.com/2019-03-16-18-43-09.png" alt="原图"></p>
-<p>添加上了混合模式(变灰是因为color选择器默认是黑色):<br><img src="http://img.nixiaolei.com/2019-03-16-18-44-01.png" alt="添加上了混合模式"></p>
-<p>切换颜色中:<br><img src="http://img.nixiaolei.com/2019-03-16-18-45-53.png" alt="切换颜色中"></p>
-<p>切换后: </p>
-<p><img src="http://img.nixiaolei.com/2019-03-16-18-46-30.png" alt="切换后"></p>
-<p>虽然有点丑但我们成功了~</p>
-<h2 id="更多可能性"><a href="#更多可能性" class="headerlink" title="更多可能性"></a>更多可能性</h2><p>利用整个混合模式的特性， 我们还能做出更多的东西， 比如利用三原色实现彩色loading、 万花筒等等炫酷动画， 可以看看参考文献中的例子， 非常的不错</p>
-<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><blockquote>
-<p><a href="https://www.cnblogs.com/coco1s/p/6829372.html" target="_blank" rel="noopener">https://www.cnblogs.com/coco1s/p/6829372.html</a></p>
-</blockquote>
+        <p>公司有这样的应用场景， 需要按时间段来分类图片， 然后各个分类之间还有联系， 因为有可能上一个分段的后面一部分图片和下一个分段的钱一部分图片在同一个分页。 </p>
+<p><img src="http://img.nixiaolei.com/2019-09-10-20-36-59.png" alt="2019-09-10-20-36-59"></p>
+<p>打开某一分类：<br><img src="http://img.nixiaolei.com/2019-09-10-20-52-42.png" alt="2019-09-10-20-52-42"></p>
+<p>在这种场景下， 我们需要考虑:</p>
+<ol>
+<li>如何把归类的图片同时保持相应的顺序成一组</li>
+<li>当我打开并不是连续的分段时， 中间的分段如何空出来， 以便于后续插入， 同时插入后还要保证 <code>1</code> </li>
+<li>打开一个分类时会加载大量图片， 此时加载资源会阻塞网络， 图片归类计算会阻塞进程， 图片量大的时候性能会出问题</li>
+<li>当用户滚动时， 需要加载分页</li>
+<li>滚动时分页加载的数据， 不能和用户主动打开时的数据冲突重复</li>
+</ol>
+<hr>
+<p>解决思路</p>
+<ol>
+<li>首先可以创建一个数组或是字典， 存储已加载的页码， 用来过滤重复加载的情况</li>
+<li>以用户展开指定操作为优先， 滚动加载数据为次要，  当用户滚动时 ， 我们不要立即加载， 先存在一个队列里， 设置一个延迟时间， 在这段时间内， 用户有任何和加载相关的操作就将 分页的请求无限期延后， 直到在一段时间内都无任何操作后， 才开始从队列中取出需要加载的分页， 挨个加载（注意不要一起加载， 加载图片会阻塞网络）。</li>
+<li>大图索引问题， 维护一个二为数组 和一个一维数组， 一维数组用来给大图使用，因为大图需要连续的滑动下一页操作， 二位数组用来渲染页面</li>
+</ol>
 
       
     </div>
@@ -471,7 +465,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://blog.nixiaolei.com/2019/03/16/利用CSS混合模式更改图片颜色/" title="利用CSS混合模式更改图片颜色">http://blog.nixiaolei.com/2019/03/16/利用CSS混合模式更改图片颜色/</a>
+    <a href="http://blog.nixiaolei.com/2019/04/10/【记录】记一次优化时间线卡顿处理思路/" title="【记录】记一次优化时间线卡顿处理思路">http://blog.nixiaolei.com/2019/04/10/【记录】记一次优化时间线卡顿处理思路/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -486,7 +480,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/css/" rel="tag"># css</a>
+            <a href="/tags/记录/" rel="tag"># 记录</a>
           
         </div>
       
@@ -499,8 +493,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/16/【容器】Docker入门教程/" rel="next" title="【容器】Docker入门教程">
-                <i class="fa fa-chevron-left"></i> 【容器】Docker入门教程
+              <a href="/2019/04/09/【React】从高阶函数到理解高阶组件/" rel="next" title="【React】从高阶函数到理解高阶组件">
+                <i class="fa fa-chevron-left"></i> 【React】从高阶函数到理解高阶组件
               </a>
             
           </div>
@@ -509,8 +503,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/03/16/【css-doodle】css-web-component入门/" rel="prev" title="【css-doodle】 css web-component入门">
-                【css-doodle】 css web-component入门 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/04/10/【win10】解决经常性内存爆满100/" rel="prev" title="【win10】解决经常性内存爆满100%">
+                【win10】解决经常性内存爆满100% <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -567,17 +561,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -667,22 +652,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#尝试修改图片物体颜色"><span class="nav-number">1.</span> <span class="nav-text">尝试修改图片物体颜色</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#过程记录"><span class="nav-number">1.1.</span> <span class="nav-text">过程记录</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更多可能性"><span class="nav-number">2.</span> <span class="nav-text">更多可能性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文献"><span class="nav-number">3.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
