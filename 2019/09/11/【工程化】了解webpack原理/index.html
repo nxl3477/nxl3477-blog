@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="倪晓磊的博客">
 <meta property="og:description" content="webpack 的成功之处在于其loader , 但 webpack 的失败之处也出在这个loader  对于webpack 来讲， 万物都是模块， webpack 为什么可以做到万物都可以 require就是使用了loader,  但同时也是loader 导致了webpack 的编译速度（你懂的）， 这是为什么呢， 这里先说一下基本原理  webpack 在处理的时候， 会经过多个loader">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-09-11T15:56:17.065Z">
+<meta property="og:updated_time" content="2019-09-11T15:59:01.760Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【工程化】了解webpack原理">
 <meta name="twitter:description" content="webpack 的成功之处在于其loader , 但 webpack 的失败之处也出在这个loader  对于webpack 来讲， 万物都是模块， webpack 为什么可以做到万物都可以 require就是使用了loader,  但同时也是loader 导致了webpack 的编译速度（你懂的）， 这是为什么呢， 这里先说一下基本原理  webpack 在处理的时候， 会经过多个loader">
@@ -358,7 +358,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  631 字
+                  632 字
                 </span>
               
 
@@ -403,9 +403,9 @@
 <p>webpack 在处理的时候， 会经过多个loader, 比如<code>babel-loader</code>,<code>less-loader</code>， 那如何把这些看似毫不相关的， 又是天南地北找来的， 出自不同开发者之手的loader 集合起来呢:</p>
 <p>首先是第一个接受任务的loader, loader1 会接受代码的字符串， 然后把代码变成 Ast 进行处理， 结束以后再转为 string字符串。</p>
 <p>也就是说，整个 loader1 经历了一下的流程:</p>
-<p>字符串 -&gt; Ast 静态语法树 -&gt; 遍历Ast处理业务 -&gt; 字符串</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">字符串 -&gt; Ast 静态语法树 -&gt; 遍历Ast处理业务 -&gt; 字符串</span><br></pre></td></tr></table></figure>
 <p><br>同样的loader2 也会经历这样一个过程！</p>
-<p>也就是说所有loader 穿起来就是:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">loader1 开始 -&gt; 获取字符串 -&gt;  Ast -&gt; 遍历Ast处理业务 -&gt; 字符串 -&gt; loader1结束 -&gt; loader2 开始 -&gt; 获得字符串 -&gt; Ast -&gt; 遍历Ast处理业务 -&gt; 字符串 -&gt; loader 2 结束 -&gt; loader3开始 -&gt; ………等等</span><br></pre></td></tr></table></figure></p>
+<p>也就是说所有loader 穿起来就是:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">loader1 开始 -&gt; 获取字符串 -&gt;  Ast -&gt; 遍历Ast处理业务 </span><br><span class="line">-&gt; 字符串 -&gt; loader1结束 -&gt; loader2 开始 -&gt; 获得字符串 </span><br><span class="line">-&gt; Ast -&gt; 遍历Ast处理业务 -&gt; 字符串 -&gt; loader 2 结束 </span><br><span class="line">-&gt; loader3开始 -&gt; ………等等</span><br></pre></td></tr></table></figure></p>
 <p>乍一看， 你可能会觉得， 是不是太蠢了， 为什么不等到全部loader处理完成再转换回 字符串， 还要转来转去， 原来打包时间都在这消耗掉了。<br>没错， 你当然不是第一个想到的， 这就是之前大火的parcel 的打包机制（虽然parcel的零配置很优秀， 但因为被webpack抄走了， 所以也渐渐势头不在）,  并且parcel还启用了多核打包:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">string字符串 -&gt; Ast(loader1 &amp; loader2 &amp; loader3) -&gt; string 字符串  外加多核打包📦</span><br></pre></td></tr></table></figure>
 <p>一气呵成， 这感觉，多爽， 确实比webpack快多了 ，省了那么多步骤， 能不快吗</p>
