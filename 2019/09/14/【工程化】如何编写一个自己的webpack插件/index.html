@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="JavaScript,">
+  <meta name="keywords" content="webpack,工程化,">
 
 
 
@@ -79,18 +79,22 @@
 
 
 
-<meta name="description" content="bind方法用来保留JavaScript的this指向， 和apply、call这两个方法不同的是，bind不会立即执行 如何模拟实现一个bind方法 初始函数，我们将对整个函数修改this指向12345function fn( name ) &amp;#123;  this.name = name&amp;#125;var obj = &amp;#123; age: 18 &amp;#125; 最普通的实现创建一个函数1234">
-<meta name="keywords" content="JavaScript">
+<meta name="description" content="webpack 实现插件的机制[ 创建 ] – webpack在其内部对象上创建各种钩子[ 注册 ] – 插件将自己的方法注册到对应钩子上， 交给webpack[ 调用 ] – webpack 编译过程中， 会适时地触发相应钩子， 因此也就触发了插件的方法  第一个demo不知道这么起步， 那咱就先去复制一个， 官网提供了一个最最最简易的demo  https://webpack.js.org/c">
+<meta name="keywords" content="webpack,工程化">
 <meta property="og:type" content="article">
-<meta property="og:title" content="模拟实现一个bind">
-<meta property="og:url" content="http://blog.nixiaolei.com/2019/03/31/模拟实现一个bind/index.html">
+<meta property="og:title" content="【工程化】如何编写一个自己的webpack插件">
+<meta property="og:url" content="http://blog.nixiaolei.com/2019/09/14/【工程化】如何编写一个自己的webpack插件/index.html">
 <meta property="og:site_name" content="倪晓磊的博客">
-<meta property="og:description" content="bind方法用来保留JavaScript的this指向， 和apply、call这两个方法不同的是，bind不会立即执行 如何模拟实现一个bind方法 初始函数，我们将对整个函数修改this指向12345function fn( name ) &amp;#123;  this.name = name&amp;#125;var obj = &amp;#123; age: 18 &amp;#125; 最普通的实现创建一个函数1234">
+<meta property="og:description" content="webpack 实现插件的机制[ 创建 ] – webpack在其内部对象上创建各种钩子[ 注册 ] – 插件将自己的方法注册到对应钩子上， 交给webpack[ 调用 ] – webpack 编译过程中， 会适时地触发相应钩子， 因此也就触发了插件的方法  第一个demo不知道这么起步， 那咱就先去复制一个， 官网提供了一个最最最简易的demo  https://webpack.js.org/c">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-09-09T16:57:46.057Z">
+<meta property="og:image" content="http://img.nixiaolei.com/2019-09-14-23-39-17.png">
+<meta property="og:image" content="http://img.nixiaolei.com/2019-09-15-00-16-21.png">
+<meta property="og:image" content="http://img.nixiaolei.com/2019-09-15-00-31-59.png">
+<meta property="og:updated_time" content="2019-09-14T16:41:02.283Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="模拟实现一个bind">
-<meta name="twitter:description" content="bind方法用来保留JavaScript的this指向， 和apply、call这两个方法不同的是，bind不会立即执行 如何模拟实现一个bind方法 初始函数，我们将对整个函数修改this指向12345function fn( name ) &amp;#123;  this.name = name&amp;#125;var obj = &amp;#123; age: 18 &amp;#125; 最普通的实现创建一个函数1234">
+<meta name="twitter:title" content="【工程化】如何编写一个自己的webpack插件">
+<meta name="twitter:description" content="webpack 实现插件的机制[ 创建 ] – webpack在其内部对象上创建各种钩子[ 注册 ] – 插件将自己的方法注册到对应钩子上， 交给webpack[ 调用 ] – webpack 编译过程中， 会适时地触发相应钩子， 因此也就触发了插件的方法  第一个demo不知道这么起步， 那咱就先去复制一个， 官网提供了一个最最最简易的demo  https://webpack.js.org/c">
+<meta name="twitter:image" content="http://img.nixiaolei.com/2019-09-14-23-39-17.png">
 
 
 
@@ -120,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://blog.nixiaolei.com/2019/03/31/模拟实现一个bind/">
+  <link rel="canonical" href="http://blog.nixiaolei.com/2019/09/14/【工程化】如何编写一个自己的webpack插件/">
 
 
 
 
 
-  <title>模拟实现一个bind | 倪晓磊的博客</title>
+  <title>【工程化】如何编写一个自己的webpack插件 | 倪晓磊的博客</title>
   
 
 
@@ -275,7 +279,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://blog.nixiaolei.com/2019/03/31/模拟实现一个bind/">
+    <link itemprop="mainEntityOfPage" href="http://blog.nixiaolei.com/2019/09/14/【工程化】如何编写一个自己的webpack插件/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="a磊的前端梦">
@@ -292,7 +296,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">模拟实现一个bind</h2>
+          <h2 class="post-title" itemprop="name headline">【工程化】如何编写一个自己的webpack插件</h2>
         
 
         <div class="post-meta">
@@ -304,8 +308,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-31T16:52:35+08:00">
-                2019-03-31
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-14T23:05:23+08:00">
+                2019-09-14
               </time>
             
 
@@ -327,8 +331,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
-                    <span itemprop="name">JavaScript</span>
+                  <a href="/categories/工程化/" itemprop="url" rel="index">
+                    <span itemprop="name">工程化</span>
                   </a>
                 </span>
 
@@ -358,7 +362,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  239 字
+                  904 字
                 </span>
               
 
@@ -374,7 +378,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1 分钟
+                  3 分钟
                 </span>
               
             </div>
@@ -395,17 +399,27 @@
       
 
       
-        <p><code>bind</code>方法用来保留<code>JavaScript</code>的<code>this</code>指向， 和<code>apply</code>、<code>call</code>这两个方法不同的是，<code>bind</code>不会立即执行</p>
-<p>如何模拟实现一个<code>bind</code>方法</p>
-<p>初始函数，我们将对整个函数修改<code>this</code>指向<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"> name </span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name = name</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj = &#123; <span class="attr">age</span>: <span class="number">18</span> &#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="最普通的实现"><a href="#最普通的实现" class="headerlink" title="最普通的实现"></a>最普通的实现</h2><p>创建一个函数<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">mybind</span>(<span class="params">func ,context, ...args</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> func.apply(context, args  )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> bindFn = mybind(fn, obj, <span class="string">'小明'</span>)</span><br></pre></td></tr></table></figure></p>
-<h2 id="原型实现"><a href="#原型实现" class="headerlink" title="原型实现"></a>原型实现</h2><p>创建一个函数<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Function</span>.prototype.mybind = <span class="function"><span class="keyword">function</span>(<span class="params">context, ...args</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> _this = <span class="keyword">this</span></span><br><span class="line">  <span class="keyword">return</span>  <span class="function">(<span class="params">...args2</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> _this.apply( context, [ ...args, ...args2] )</span><br><span class="line">  &#125; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> bindFn = fn.mybind(obj, <span class="string">'小明'</span> )</span><br></pre></td></tr></table></figure></p>
-<p>实现很简单， 但是还差一步，就是<code>bind</code>后的函数， 拿来作为构造函数<code>new</code>时， <code>this</code>指向会出问题</p>
-<h2 id="处理new-的指向"><a href="#处理new-的指向" class="headerlink" title="处理new 的指向"></a>处理new 的指向</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Function</span>.prototype.mybind = <span class="function"><span class="keyword">function</span>(<span class="params">context, ...args</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> _this = <span class="keyword">this</span></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">cbFn</span> (<span class="params">...tempArgs</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span> <span class="keyword">instanceof</span> cbFn ? _this.apply(<span class="keyword">this</span>, [ ...args, ...tempArgs]) : _this.apply( context, [ ...args, ...tempArgs] )</span><br><span class="line">  &#125; </span><br><span class="line">  <span class="keyword">return</span> cbFn</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> BindFn = fn.mybind(obj, <span class="string">'小明'</span> )</span><br><span class="line"><span class="keyword">var</span> bfn = <span class="keyword">new</span> BindFn()</span><br></pre></td></tr></table></figure>
-<p>参考文献</p>
-<ul>
-<li><a href="https://github.com/mqyqingfeng/Blog/issues/13" target="_blank" rel="noopener">https://github.com/mqyqingfeng/Blog/issues/13</a></li>
-</ul>
+        <h2 id="webpack-实现插件的机制"><a href="#webpack-实现插件的机制" class="headerlink" title="webpack 实现插件的机制"></a>webpack 实现插件的机制</h2><p>[ 创建 ] – webpack在其内部对象上创建各种钩子<br>[ 注册 ] – 插件将自己的方法注册到对应钩子上， 交给webpack<br>[ 调用 ] – webpack 编译过程中， 会适时地触发相应钩子， 因此也就触发了插件的方法 </p>
+<h2 id="第一个demo"><a href="#第一个demo" class="headerlink" title="第一个demo"></a>第一个demo</h2><p>不知道这么起步， 那咱就先去复制一个， 官网提供了一个最最最简易的demo</p>
+<blockquote>
+<p><a href="https://webpack.js.org/concepts/plugins/" target="_blank" rel="noopener">https://webpack.js.org/concepts/plugins/</a></p>
+</blockquote>
+<p>复制下来是这样的:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> pluginName = <span class="string">'ConsoleLogOnBuildWebpackPlugin'</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ConsoleLogOnBuildWebpackPlugin</span> </span>&#123;</span><br><span class="line">  <span class="comment">// 每个插件必备的方法</span></span><br><span class="line">  apply(compiler) &#123;</span><br><span class="line">    <span class="comment">// compiler 是整个webpack编译的核心</span></span><br><span class="line">    <span class="comment">// tap 可以理解为触发订阅</span></span><br><span class="line">    compiler.hooks.run.tap(pluginName, compilation =&gt; &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'🍎The webpack build process is starting!!!'</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = ConsoleLogOnBuildWebpackPlugin;</span><br></pre></td></tr></table></figure></p>
+<p>把这个插件引入webpack , 虽然是成功跑起来了啊， 但是一脸蒙蔽， 完全不知道在干嘛也不行啊</p>
+<p>首先每个插件都必须要有一个<code>apply</code> 方法， 它会接收一个<code>compiler</code> ， 这个<code>compiler</code> 是所有webpack的核心， 所以webpack 编译相关的内容自然也就在它上面了</p>
+<p>接着，我们看到了 complier 上有一个hooks , 后面还有一大串， 那这个<code>hooks</code>是哪里来的呢， 怎么回事呢？</p>
+<p>让我们去源码里一探究竟：</p>
+<p><img src="http://img.nixiaolei.com/2019-09-14-23-39-17.png" alt="2019-09-14-23-39-17"></p>
+<p>哦～ 原来所有 hooks 相关的方法都在这里了， 并且我们发现 compiler 是继承自 <code>Tapable</code></p>
+<p>不光如此， 连接受的参数中的 <code>compilation</code> 也继承自 Tapable, compilation 代表了当次编译的chunk</p>
+<p><img src="http://img.nixiaolei.com/2019-09-15-00-16-21.png" alt="2019-09-15-00-16-21"></p>
+<p>那啥是 Tapable 啊？</p>
+<h2 id="认识-Tapable"><a href="#认识-Tapable" class="headerlink" title="认识 Tapable"></a>认识 Tapable</h2><p>Tapble 是 webpack 的灵魂插件， 它是一个用于做消息通知的包.</p>
+<p>多说无用， 让我们来单独玩一下 tapable</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123;</span><br><span class="line">  <span class="comment">//同步串行的钩子， 不用关心函数的返回值</span></span><br><span class="line">  SyncHook,</span><br><span class="line">  <span class="comment">// 同步串行的钩子 ， 上一个返回值不为null 跳过剩下的逻辑</span></span><br><span class="line">  SyncBailHook,</span><br><span class="line">  <span class="comment">// 同步串行， 上一个值可以传递给下一个值</span></span><br><span class="line">  SyncWaterfallHook,</span><br><span class="line">  SyncLoopHook,</span><br><span class="line">  AsyncParallelHook,</span><br><span class="line">  AsyncParallelBailHook,</span><br><span class="line">  AsyncSeriesHook,</span><br><span class="line">  AsyncSeriesBailHook,</span><br><span class="line">  AsyncSeriesWaterfallHook </span><br><span class="line">&#125; = <span class="built_in">require</span>(<span class="string">"tapable"</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> queue = <span class="keyword">new</span> SyncHook([<span class="string">"name"</span>, <span class="string">"name2"</span>])</span><br><span class="line"><span class="comment">// 订阅</span></span><br><span class="line">queue.tap(<span class="string">"1"</span>, <span class="function"><span class="keyword">function</span> (<span class="params">name, name2</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"1⃣️"</span>, name, name2)</span><br><span class="line">  <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">queue.tap(<span class="string">"2"</span>, <span class="function"><span class="keyword">function</span> (<span class="params">name, name2</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"2⃣️"</span>, name, name2)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">queue.tap(<span class="string">"3"</span>, <span class="function"><span class="keyword">function</span> (<span class="params">name, name2</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"3⃣️"</span>, name, name2)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 触发整个钩子</span></span><br><span class="line">queue.call(<span class="string">'webpack'</span>, <span class="string">"webpack-cli"</span>)</span><br></pre></td></tr></table></figure>
+<p>此时的输出<br><img src="http://img.nixiaolei.com/2019-09-15-00-31-59.png" alt="2019-09-15-00-31-59"></p>
+<p>可以看的出 ， 当queue 的call 方法被调用时， 之前挂载的 tap 方法都被触发了， 这其实就是前端里几乎无处不在的观察者模式</p>
+<h2 id="附上一个之前写的webpack-插件"><a href="#附上一个之前写的webpack-插件" class="headerlink" title="附上一个之前写的webpack 插件"></a>附上一个之前写的webpack 插件</h2><p>这是之前用来处理swig模版编译的plugin<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. 何时才能拦截最后生成的swig</span></span><br><span class="line"><span class="comment">// 2. 如何分清这个swig文件对应的Js</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HtmlAfterWebpackPlugin</span> </span>&#123;</span><br><span class="line">  <span class="comment">// compiler 是webpack的实例</span></span><br><span class="line">    apply(compiler) &#123;</span><br><span class="line">      <span class="comment">//  此处是实例运行期间， 可以吧 tap 当成是 on</span></span><br><span class="line">      <span class="comment">// 实例上有钩子， 将插件注册到webpack实例钩子上 （run初始运行阶段, compilation: 完成阶段）</span></span><br><span class="line">        compiler.hooks.compilation.tap(pluginName, compilation =&gt; &#123;</span><br><span class="line">          <span class="built_in">console</span>.log(<span class="string">"🍉webpack 构建过程开始！"</span>);</span><br><span class="line">          <span class="comment">// 因为webpack的版本更新不友好， 所以新的插件挂载方式需要自己从源码中查找</span></span><br><span class="line">          <span class="comment">// 此阶段是 html-webpack-plugin 提供的，  所以必须在 html-webpack-plugin 之后执行</span></span><br><span class="line">      </span><br><span class="line"></span><br><span class="line">          <span class="comment">// 此处是将回调挂载到 webpack 执行过程中的某个阶段， 也就是生命周期</span></span><br><span class="line">          <span class="comment">// Plugin的顺序是 从上至下挂钩子， 但执行顺序不一定 </span></span><br><span class="line">          compilation.hooks.htmlWebpackPluginAfterHtmlProcessing.tap(pluginName, htmlPluginData =&gt; &#123;</span><br><span class="line">            <span class="keyword">let</span> _html = htmlPluginData.html</span><br><span class="line">            <span class="keyword">const</span> jsResult = assetsHelp(htmlPluginData.assets) </span><br><span class="line">            <span class="comment">// 路径别名</span></span><br><span class="line">            _html = _html.replace(<span class="regexp">/views:/g</span>, <span class="string">"../../"</span>)</span><br><span class="line">            _html = _html.replace(<span class="regexp">/components:/g</span>, <span class="string">"../../../components/"</span>)</span><br><span class="line">            <span class="comment">// 指定位置插入js css</span></span><br><span class="line">            _html = _html.replace(<span class="regexp">/&lt;!--injectjs--&gt;/g</span>, jsResult.js.join(<span class="string">""</span>))</span><br><span class="line">            _html = _html.replace(<span class="regexp">/&lt;!--injectcss--&gt;/g</span>, jsResult.css.join(<span class="string">""</span>))</span><br><span class="line">            <span class="comment">// _html = _html.replace("&lt;!--injectjs--&gt;", jsResult.js.join(""))</span></span><br><span class="line">            htmlPluginData.html = _html</span><br><span class="line">            <span class="comment">// htmlPluginData.html = _html</span></span><br><span class="line">            </span><br><span class="line">          &#125;)</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -455,7 +469,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://blog.nixiaolei.com/2019/03/31/模拟实现一个bind/" title="模拟实现一个bind">http://blog.nixiaolei.com/2019/03/31/模拟实现一个bind/</a>
+    <a href="http://blog.nixiaolei.com/2019/09/14/【工程化】如何编写一个自己的webpack插件/" title="【工程化】如何编写一个自己的webpack插件">http://blog.nixiaolei.com/2019/09/14/【工程化】如何编写一个自己的webpack插件/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -470,7 +484,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+            <a href="/tags/webpack/" rel="tag"># webpack</a>
+          
+            <a href="/tags/工程化/" rel="tag"># 工程化</a>
           
         </div>
       
@@ -483,8 +499,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/30/this的软绑定和硬绑定/" rel="next" title="this的软绑定和硬绑定">
-                <i class="fa fa-chevron-left"></i> this的软绑定和硬绑定
+              <a href="/2019/09/14/【工程化】babel简单原理及简单实现/" rel="next" title="【工程化】babel简单原理及简单实现">
+                <i class="fa fa-chevron-left"></i> 【工程化】babel简单原理及简单实现
               </a>
             
           </div>
@@ -492,10 +508,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/04/01/待学书籍/" rel="prev" title="待学书籍">
-                待学书籍 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -661,7 +673,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#最普通的实现"><span class="nav-number">1.</span> <span class="nav-text">最普通的实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原型实现"><span class="nav-number">2.</span> <span class="nav-text">原型实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#处理new-的指向"><span class="nav-number">3.</span> <span class="nav-text">处理new 的指向</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#webpack-实现插件的机制"><span class="nav-number">1.</span> <span class="nav-text">webpack 实现插件的机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第一个demo"><span class="nav-number">2.</span> <span class="nav-text">第一个demo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#认识-Tapable"><span class="nav-number">3.</span> <span class="nav-text">认识 Tapable</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#附上一个之前写的webpack-插件"><span class="nav-number">4.</span> <span class="nav-text">附上一个之前写的webpack 插件</span></a></li></ol></div>
             
 
           </div>
