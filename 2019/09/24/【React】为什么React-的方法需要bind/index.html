@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="倪晓磊, a磊, 倪晓磊的博客, a磊的前端梦, 全栈开发, 前端, 前端开发, nixiaolei, Node.js, webpack, JavaScript, HTML, CSS, Python, webGL">
+  <meta name="keywords" content="React,">
 
 
 
@@ -79,17 +79,22 @@
 
 
 
-<meta name="description" content="挑战10000小时定律">
-<meta name="keywords" content="倪晓磊, a磊, 前端, 前端开发, nixiaolei, Node.js, webpack, JavaScript, HTML, CSS, Python, webGL">
-<meta property="og:type" content="website">
-<meta property="og:title" content="倪晓磊的博客">
-<meta property="og:url" content="http://blog.nixiaolei.com/archives/page/11/index.html">
+<meta name="description" content="今天下班的时候， 同事问我React 的中的方法为什么需要箭头函数包裹， 或者是bind 绑定一下this指向， 才能被调用， 我当时也是一愣啊， 虽然以前好像也去研究过这个问题， 但好像答案也并不是那么明确。 于是我就把当时我的想法跟他阐述了一下， 当时我是这么说的：   this 在初始化时是指向的对象实例， 但调用方法的时候不是， 因为jsx不是真正的dom 它会被转化为虚拟dom, 所以事">
+<meta name="keywords" content="React">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【React】为什么React 的方法需要bind">
+<meta property="og:url" content="http://blog.nixiaolei.com/2019/09/24/【React】为什么React-的方法需要bind/index.html">
 <meta property="og:site_name" content="倪晓磊的博客">
-<meta property="og:description" content="挑战10000小时定律">
+<meta property="og:description" content="今天下班的时候， 同事问我React 的中的方法为什么需要箭头函数包裹， 或者是bind 绑定一下this指向， 才能被调用， 我当时也是一愣啊， 虽然以前好像也去研究过这个问题， 但好像答案也并不是那么明确。 于是我就把当时我的想法跟他阐述了一下， 当时我是这么说的：   this 在初始化时是指向的对象实例， 但调用方法的时候不是， 因为jsx不是真正的dom 它会被转化为虚拟dom, 所以事">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://img.nixiaolei.com/2019-09-24-20-14-45.png">
+<meta property="og:image" content="http://img.nixiaolei.com/2019-09-24-20-25-26.png">
+<meta property="og:image" content="http://img.nixiaolei.com/2019-09-24-20-30-04.png">
+<meta property="og:updated_time" content="2019-09-24T12:30:46.647Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="倪晓磊的博客">
-<meta name="twitter:description" content="挑战10000小时定律">
+<meta name="twitter:title" content="【React】为什么React 的方法需要bind">
+<meta name="twitter:description" content="今天下班的时候， 同事问我React 的中的方法为什么需要箭头函数包裹， 或者是bind 绑定一下this指向， 才能被调用， 我当时也是一愣啊， 虽然以前好像也去研究过这个问题， 但好像答案也并不是那么明确。 于是我就把当时我的想法跟他阐述了一下， 当时我是这么说的：   this 在初始化时是指向的对象实例， 但调用方法的时候不是， 因为jsx不是真正的dom 它会被转化为虚拟dom, 所以事">
+<meta name="twitter:image" content="http://img.nixiaolei.com/2019-09-24-20-14-45.png">
 
 
 
@@ -119,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://blog.nixiaolei.com/archives/page/11/">
+  <link rel="canonical" href="http://blog.nixiaolei.com/2019/09/24/【React】为什么React-的方法需要bind/">
 
 
 
 
 
-  <title>归档 | 倪晓磊的博客</title>
+  <title>【React】为什么React 的方法需要bind | 倪晓磊的博客</title>
   
 
 
@@ -144,7 +149,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -260,390 +265,272 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.nixiaolei.com/2019/09/24/【React】为什么React-的方法需要bind/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="a磊的前端梦">
+      <meta itemprop="description" content="挑战10000小时定律">
+      <meta itemprop="image" content="/images/myavatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="倪晓磊的博客">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
-         
+          <h2 class="post-title" itemprop="name headline">【React】为什么React 的方法需要bind</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-24T19:47:43+08:00">
+                2019-09-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-        很好! 目前共计 118 篇日志。 继续努力。
-      </span>
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/React/" itemprop="url" rel="index">
+                    <span itemprop="name">React</span>
+                  </a>
+                </span>
 
-      
-
-        
-        
-        
-
-        
+                
+                
+              
+            </span>
           
-          <div class="collection-title">
-            <h2 class="archive-year" id="archive-year-2019">2019</h2>
-          </div>
-        
-        
 
-        
+          
+            
+          
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
+          
 
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2019/03/18/【CSS矩阵】你不知道的Css矩阵/" itemprop="url">
+          
+
+          
+            <div class="post-wordcount">
               
-                <span itemprop="name">你不知道的Css矩阵</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  779 字
+                </span>
               
-            </a>
-        
-      </h3>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-03-18T15:54:33+08:00" content="2019-03-18">
-          03-18
-        </time>
-      </div>
+              
+                <span class="post-meta-divider">|</span>
+              
 
-    </header>
-  </article>
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  2 分钟
+                </span>
+              
+            </div>
+          
 
+          
 
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2019/03/18/【CSS全景】淘宝造物节H5原理/" itemprop="url">
-              
-                <span itemprop="name">【CSS全景】淘宝造物节H5原理</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-03-18T15:49:50+08:00" content="2019-03-18">
-          03-18
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2019/03/18/计算机语言的本源与发展/" itemprop="url">
-              
-                <span itemprop="name">计算机语言的本源与发展</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-03-18T12:42:07+08:00" content="2019-03-18">
-          03-18
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+      
+        <p>今天下班的时候， 同事问我React 的中的方法为什么需要箭头函数包裹， 或者是bind 绑定一下this指向， 才能被调用， 我当时也是一愣啊， 虽然以前好像也去研究过这个问题， 但好像答案也并不是那么明确。 于是我就把当时我的想法跟他阐述了一下， 当时我是这么说的： </p>
+<blockquote>
+<p>this 在初始化时是指向的对象实例， 但调用方法的时候不是， 因为jsx不是真正的dom 它会被转化为虚拟dom, 所以事件是通过react代理的， 并且这个涉及到javascript的作用域问题， 正常的变量都会是词法作用域， 也就是在书写阶段就能确定该变量的作用域， 而this 则是一个怪咖，他是一个动态作用域， 它是在执行期间才会确定 this 指向， 俗话说就是谁调用就指向谁。 因此，事件被react 代理了注册了， 如果是正常情况的this 在调用期间自然无法获得原本的class 指向， 至于为什么 this 是undefind ， 这是因为 this 应该是指向到了 window 上， 而执行react 的代码中开启了严格模式所以 this 就变成了undefind</p>
+</blockquote>
+<p>上面这些， 咋一看好像没什么问题， 但我仔细一想好像又不太对劲， 问题真的是出在 React 代理注册事件的时候吗</p>
+<p>让我们来一探究竟：</p>
+<p><img src="http://img.nixiaolei.com/2019-09-24-20-14-45.png" alt="2019-09-24-20-14-45"></p>
+<p>这是React 官网的一段话， 大致意思是（用的翻译工具🐶）:</p>
+<blockquote>
+<p>你必须要小心的这JSX回调的this。 在JavaScript中，类方法不是默认绑定的。 如果你忘了绑定this.handleClick并把它传递到的onClick，这将是不确定的，当函数实际被调用的时候。</p>
+</blockquote>
+<blockquote>
+<p>这不是React 的行为; 这是在JavaScript中的函数工作的原理的一部分。 通常，如果指的是方法，无需（）后，如onClick = {this.handleClick}，则应该bind 指向。</p>
+</blockquote>
+<blockquote>
+<p>如果调用bind惹恼了你，可以使用箭头函数</p>
+</blockquote>
+<p>也就是说问题不是出在了React 身上， 而是出在了javascript 自身的执行机制上。 那让我们回归本质， 看看到底是怎么一回事吧。</p>
+<p>让我们来看同样一段代码， 不同情况下的this指向。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> demo = &#123;</span><br><span class="line">  fn(key) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(key, <span class="keyword">this</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">demo.fn(<span class="string">'1'</span>)</span><br><span class="line"><span class="comment">// 这一步就类似我们在jsx中的事件赋值操作</span></span><br><span class="line"><span class="keyword">var</span> dFn = demo.fn</span><br><span class="line">dFn(<span class="string">'2'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> arrowsFn = <span class="function"><span class="params">()</span> =&gt;</span> demo.fn(<span class="string">'3'</span>)</span><br><span class="line">arrowsFn()</span><br></pre></td></tr></table></figure>
+<p><img src="http://img.nixiaolei.com/2019-09-24-20-25-26.png" alt="2019-09-24-20-25-26"></p>
+<p>我们可以看到 ，2 的赋值方式导致了this指向的丢失， React 的事件挂载时我们也是如此操作， 这也就说明了是js 本身的问题而非 React 导致的， 尽管React 没有做相应的处理也有责任</p>
+<p>让我们继续， 不是说React 中指向的是 undefind 吗， 那我们打开严格模式看看是不是如此: </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">"use strict"</span>;</span><br><span class="line"><span class="keyword">var</span> demo = &#123;</span><br><span class="line">  fn(key) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(key, <span class="keyword">this</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">demo.fn(<span class="string">'1'</span>)</span><br><span class="line"><span class="keyword">var</span> dFn = demo.fn</span><br><span class="line">dFn(<span class="string">'2'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> arrowsFn = <span class="function"><span class="params">()</span> =&gt;</span> demo.fn(<span class="string">'3'</span>)</span><br><span class="line">arrowsFn()</span><br></pre></td></tr></table></figure>
+<p>果然如此， this 指向变为了undefind</p>
+<p><img src="http://img.nixiaolei.com/2019-09-24-20-30-04.png" alt="2019-09-24-20-30-04"></p>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2019/03/18/【Vue】源码解析/" itemprop="url">
-              
-                <span itemprop="name">【Vue】源码解析</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-03-18T09:50:34+08:00" content="2019-03-18">
-          03-18
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2019/03/17/【记录】工具目录/" itemprop="url">
-              
-                <span itemprop="name">【记录】工具目录</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-03-17T14:59:02+08:00" content="2019-03-17">
-          03-17
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2019/03/17/【容器】docker命令手册/" itemprop="url">
-              
-                <span itemprop="name">【容器】docker命令手册</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-03-17T10:33:00+08:00" content="2019-03-17">
-          03-17
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2019/03/16/css分层-命名规范/" itemprop="url">
-              
-                <span itemprop="name">css分层&命名规范</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-03-16T23:32:55+08:00" content="2019-03-16">
-          03-16
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2019/03/16/倪晓磊的个人简历/" itemprop="url">
-              
-                <span itemprop="name">倪晓磊的个人简历</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-03-16T23:06:29+08:00" content="2019-03-16">
-          03-16
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2019/03/16/【css-doodle】css-web-component入门/" itemprop="url">
-              
-                <span itemprop="name">【css-doodle】 css web-component入门</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-03-16T20:36:22+08:00" content="2019-03-16">
-          03-16
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2019/03/16/利用CSS混合模式更改图片颜色/" itemprop="url">
-              
-                <span itemprop="name">利用CSS混合模式更改图片颜色</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-03-16T18:34:26+08:00" content="2019-03-16">
-          03-16
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>你的支持将鼓励我继续创作</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="a磊的前端梦 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="a磊的前端梦 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    a磊的前端梦
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://blog.nixiaolei.com/2019/09/24/【React】为什么React-的方法需要bind/" title="【React】为什么React 的方法需要bind">http://blog.nixiaolei.com/2019/09/24/【React】为什么React-的方法需要bind/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="http://blog.nixiaolei.com/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/React/" rel="tag"># React</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/09/19/【PWA】如何使用PWA/" rel="next" title="【PWA】如何使用PWA">
+                <i class="fa fa-chevron-left"></i> 【PWA】如何使用PWA
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/archives/page/10/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/archives/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/archives/page/12/">12</a><a class="extend next" rel="next" href="/archives/page/12/"><i class="fa fa-angle-right"></i></a>
-  </nav>
+  </article>
 
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -651,6 +538,14 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MzM0My8xOTg4NA=="></div>
+    </div>
+
+  
+
 
         </div>
         
@@ -912,6 +807,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -940,6 +839,17 @@
 
 
 
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
   
 
 
